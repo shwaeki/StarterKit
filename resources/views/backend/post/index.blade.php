@@ -20,6 +20,7 @@
                     <livewire:post-table/>
 
 
+
                     {{--   <div class="table-responsive">
                            <div>
                                <table class="table table-hover align-items-center">

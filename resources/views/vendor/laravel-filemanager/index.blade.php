@@ -26,11 +26,15 @@
     <style>
         #nav, #nav .dropdown-menu, .bg-main {
             background-color: #FFFFFF !important;
-            border-bottom: 1px solid  #32325d;
+            border-bottom: 1px solid #32325d;
         }
 
-        #nav a, #fab a {
+        #nav a {
             color: #32325d !important;
+        }
+
+        #fab a {
+            color: white !important;
         }
     </style>
 </head>

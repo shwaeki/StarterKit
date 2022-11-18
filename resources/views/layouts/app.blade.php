@@ -7,12 +7,13 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title> {{setting('company_name') }}</title>
 
-
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900;1000&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900;1000&display=swap"
+          rel="stylesheet">
 
     <link rel="stylesheet" href="{{asset('assets/fonts/stylesheet.css')}}">
     <!-- Icons -->
@@ -25,7 +26,7 @@
 
     <link rel="stylesheet" href="{{asset('assets/css/bootstrap-select.min.css')}}" type="text/css">
     <link rel="stylesheet" href="{{asset('assets/css/jquery-confirm.min.css')}}" type="text/css">
-{{--    <link rel="stylesheet" href="{{asset('assets/css/app.css')}}" type="text/css">--}}
+    {{--    <link rel="stylesheet" href="{{asset('assets/css/app.css')}}" type="text/css">--}}
     <link rel="stylesheet" href="{{asset('assets/css/app-rtl.css')}}" type="text/css">
 
 
@@ -44,16 +45,60 @@
     <div class="container-fluid mt--6">
         @yield('content')
     </div>
-    <script src="{{asset('assets/vendor/jquery/dist/jquery.min.js')}}"></script>
-    <script src="{{asset('assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js')}}"></script>
-    <script src="{{asset('assets/vendor/js-cookie/js.cookie.js')}}"></script>
-    <script src="{{asset('assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js')}}"></script>
-    <script src="{{asset('assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js')}}"></script>
+</div>
+<script src="{{asset('assets/vendor/jquery/dist/jquery.min.js')}}"></script>
+<script src="{{asset('assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js')}}"></script>
+<script src="{{asset('assets/vendor/js-cookie/js.cookie.js')}}"></script>
+<script src="{{asset('assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js')}}"></script>
+<script src="{{asset('assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js')}}"></script>
 
-    <script src="{{asset('assets/js/bootstrap-select.min.js')}}"></script>
-    <script src="{{asset('assets/js/jquery-confirm.min.js')}}"></script>
-    <script src="{{asset('assets/js/dashboard.js')}}"></script>
-    @livewireScripts
+<script src="{{asset('assets/js/bootstrap-select.min.js')}}"></script>
+<script src="{{asset('assets/js/jquery-confirm.min.js')}}"></script>
+<script src="{{asset('assets/js/dashboard.js')}}"></script>
+@livewireScripts
 @stack('scripts')
+
+
+<form action="" method="POST" id="delete-form">
+    <input name="_method" type="hidden" value="DELETE">
+    <input name="_token" type="hidden" value="cKYYZgdyCJAP4Ahp5p11iElDc5Yf3OGL3QrmnVE2">
+</form>
+
+<script>
+    jQuery(document).ready(function () {
+        $('.delete').on('click', function (e) {
+            e.preventDefault();
+            $("#delete-form").attr('action', $(this).attr('href'));
+
+            jQuery.confirm({
+                theme: 'material',
+                icon: 'fas fa-wind-warning',
+                backgroundDismiss: true,
+                closeIcon: true,
+                title: '!هل انت متاكد',
+                content: ' لا يمكنك التراجع عن هذا الإجراء.!',
+                type: 'red',
+                rtl: true,
+                typeAnimated: true,
+                buttons: {
+                    confirm: {
+                        text: 'تاكيد',
+                        btnClass: 'btn-red',
+                        action: function () {
+                            $("#delete-form").submit();
+                        }
+                    },
+                    cancel: {
+                        text: 'الغاء',
+                    }
+                }
+            });
+        })
+        $('input[required]').each(function(){
+            $($(this).parent()).find('label').addClass('required')
+        });
+    })
+</script>
+
 </body>
 </html>

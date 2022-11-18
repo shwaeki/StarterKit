@@ -43,7 +43,7 @@ class User extends Authenticatable implements MustVerifyEmail
         if (file_exists(public_path() . $this->attributes['profile_photo']))
             return $this->attributes['profile_photo'];
 
-        return "https://via.placeholder.com/150/555/fff?text=N/A";
+        return "https://placehold.jp/38/ffffff/8495f1/150x150.png?text=N/A";
 
     }
 

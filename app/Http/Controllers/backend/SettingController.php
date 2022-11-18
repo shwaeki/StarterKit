@@ -16,22 +16,26 @@ class SettingController extends Controller
         $this->middleware('permission:update-settings');
         $this->middleware('permission:view-activity-log', ['only' => ['activity']]);
     }
-    public function index() {
-        activity('settings')
-            ->causedBy(Auth::user())
-            ->log('view');
-        $title =  'Settings';
+
+    public function index()
+    {
+
         $roles = Role::pluck('name', 'id');
-        return view('backend.settings.edit', compact('roles', 'title'));
+        return view('backend.settings.edit', compact('roles'));
     }
 
-    public function update(Request $request) {
+    public function update(Request $request)
+    {
 
         foreach ($request->all() as $key => $value) {
-            if ($request->company_logo) {
-                Setting::set($key, parse_url($value, PHP_URL_PATH));
-            }else{
-                Setting::set($key, $value);
+            if ($key !== "_token") {
+                if ($key === "company_logo") {
+                    if (!is_null($value)) {
+                        Setting::set($key, parse_url($value, PHP_URL_PATH));
+                    }
+                } else {
+                    Setting::set($key, $value);
+                }
             }
         }
         Setting::save();
@@ -43,12 +47,10 @@ class SettingController extends Controller
         return back();
 
     }
-    public function activity(Request $request){
-        $title= 'Activity Logs';
-        activity('activity')
-        ->causedBy(Auth::user())
-        ->log('view');
+
+    public function activity(Request $request)
+    {
         $activities = Activity::paginate(setting('record_per_page', 15));
-        return view('backend.settings.activity', compact('activities', 'title'));
+        return view('backend.settings.activity', compact('activities'));
     }
 }

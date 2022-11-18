@@ -1,4 +1,9 @@
 @extends('layouts.app')
+
+@push('title')
+    ادارة الوسائط
+@endpush
+
 @push('styles')
     <style>
 

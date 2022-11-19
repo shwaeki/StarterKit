@@ -34,7 +34,7 @@ class PostController extends Controller
 
     public function store(PostRequest $request)
     {
-        $request->merge(['user_id' => Auth::user()->id]);
+        $request->merge(['added_by' => Auth::user()->id]);
         $post = $request->except('featured_image');
         if ($request->featured_image) {
             $post['featured_image'] = parse_url($request->featured_image, PHP_URL_PATH);

@@ -20,7 +20,7 @@ class PostFactory extends Factory
             'featured_image' => $this->faker->imageUrl($width = 840, $height = 580),
             'status' => 1,
             'category_id' => Category::all()->random()->id,
-            'user_id' => User::all()->random()->id,
+            'added_by' => User::all()->random()->id,
         ];
     }
 

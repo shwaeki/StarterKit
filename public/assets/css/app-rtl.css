@@ -3995,7 +3995,7 @@ input[type="button"].btn-block {
 .input-group > .custom-select,
 .input-group > .custom-file {
     position: relative;
-    flex: 1 1 0%;
+    flex: 1 1 0;
     min-width: 0;
     margin-bottom: 0;
 }
@@ -5249,7 +5249,7 @@ input[type="button"].btn-block {
     }
 
     .card-deck .card {
-        flex: 1 0 0%;
+        flex: 1 0 0;
         margin-left: 15px;
         margin-bottom: 0;
         margin-right: 15px;
@@ -5267,7 +5267,7 @@ input[type="button"].btn-block {
     }
 
     .card-group > .card {
-        flex: 1 0 0%;
+        flex: 1 0 0;
         margin-bottom: 0;
     }
 
@@ -6819,7 +6819,6 @@ a.close.disabled {
     font-style: normal;
     font-weight: 400;
     line-height: 1.5;
-    text-align: right;
     text-align: start;
     text-decoration: none;
     text-shadow: none;
@@ -6835,7 +6834,7 @@ a.close.disabled {
     background-clip: padding-box;
     border: 1px solid rgba(0, 0, 0, 0.05);
     border-radius: 0.4375rem;
-    box-shadow: 0px 0.5rem 2rem 0px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0.5rem 2rem 0 rgba(0, 0, 0, 0.2);
 }
 
 .popover .arrow {
@@ -16710,7 +16709,6 @@ a.btn-icon-only {
 }
 
 .btn-icon-clipboard {
-    margin: 0;
     padding: 1.5rem;
     font-size: 1rem;
     font-weight: 400;
@@ -18076,7 +18074,7 @@ textarea[resize="horizontal"] {
     padding: .75rem;
     color: #393f49;
     background-color: white;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 4px 16px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0 0 0 1px, rgba(0, 0, 0, 0.1) 0 4px 16px;
     font-size: 0.875rem;
     border-radius: .25rem;
     margin: 1rem 0;
@@ -18760,7 +18758,6 @@ textarea[resize="horizontal"] {
 }
 
 .navbar-horizontal .navbar-brand {
-    font-size: 0.875rem;
     font-weight: 600;
     text-transform: uppercase;
     font-size: .875rem;
@@ -19020,7 +19017,7 @@ textarea[resize="horizontal"] {
     0% {
         opacity: 0;
         transform: scale(0.95);
-        transform-origin: 0% 0;
+        transform-origin: 0 0;
     }
 
     100% {
@@ -19033,7 +19030,7 @@ textarea[resize="horizontal"] {
     from {
         opacity: 1;
         transform: scale(1);
-        transform-origin: 0% 0;
+        transform-origin: 0 0;
     }
 
     to {
@@ -20341,7 +20338,7 @@ textarea[resize="horizontal"] {
     0% {
         opacity: 0;
         transform: scale(0.95);
-        transform-origin: 0% 0;
+        transform-origin: 0 0;
     }
 
     100% {
@@ -20354,7 +20351,7 @@ textarea[resize="horizontal"] {
     from {
         opacity: 1;
         transform: scale(1);
-        transform-origin: 0% 0;
+        transform-origin: 0 0;
     }
 
     to {
@@ -24209,7 +24206,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 }
 
 .noUi-value-vertical {
-    transform: translate(0, -50%, 0);
+    transform: translate(0, -50%);
     padding-right: 25px;
 }
 
@@ -24296,7 +24293,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 
 .noUi-horizontal .noUi-handle.noUi-active,
 .noUi-vertical .noUi-handle.noUi-active {
-    box-shadow: 0px 0px 0px 2px #5e72e4;
+    box-shadow: 0 0 0 2px #5e72e4;
 }
 
 .input-slider--cyan .noUi-connect {
@@ -24511,7 +24508,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
     border-radius: 0.4375rem;
     padding: 0.625rem 0.75rem;
     margin-top: .6rem;
-    box-shadow: 0px 0.5rem 2rem 0px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0.5rem 2rem 0 rgba(0, 0, 0, 0.2);
 }
 
 .ql-tooltip:before, .ql-tooltip:after {
@@ -25036,8 +25033,8 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 }
 
 .scrollbar-macosx > .scroll-element.scroll-x {
-    bottom: 0px;
-    height: 0px;
+    bottom: 0;
+    height: 0;
     right: 0;
     min-width: 100%;
     overflow: visible;
@@ -25047,9 +25044,9 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 .scrollbar-macosx > .scroll-element.scroll-y {
     height: 100%;
     min-height: 100%;
-    left: 0px;
+    left: 0;
     top: 0;
-    width: 0px;
+    width: 0;
 }
 
 /* scrollbar height/width & offset from container borders */
@@ -25162,11 +25159,11 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 .scrollbar-light > .scroll-element.scroll-x .scroll-bar {
     height: 10px;
     min-width: 10px;
-    top: 0px;
+    top: 0;
 }
 
 .scrollbar-light > .scroll-element.scroll-y .scroll-bar {
-    right: 0px;
+    right: 0;
     min-height: 10px;
     width: 10px;
 }
@@ -26035,7 +26032,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
     width: 38px;
     height: 38px;
     padding: 0;
-    box-shadow: 0px 1px 10px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.2);
 }
 
 .bootstrap-datetimepicker-widget .btn {
@@ -26101,7 +26098,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
     height: 2.5em;
     width: 100%;
     border-radius: 3px;
-    margin: 2px 0px !important;
+    margin: 2px 0 !important;
 }
 
 .bootstrap-datetimepicker-widget table {
@@ -26132,7 +26129,6 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 }
 
 .bootstrap-datetimepicker-widget table th.prev span, .bootstrap-datetimepicker-widget table th.next span {
-    border-radius: 4px;
     height: 27px;
     width: 27px;
     line-height: 28px;
@@ -26179,7 +26175,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
     line-height: 2.2;
     width: 30px;
     text-align: center;
-    padding: 0px;
+    padding: 0;
     border-radius: 50%;
     margin: 0 auto;
     z-index: -1;
@@ -26219,7 +26215,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 .bootstrap-datetimepicker-widget table td.active > div, .bootstrap-datetimepicker-widget table td.active:hover > div {
     background-color: #5e72e4;
     color: #fff;
-    box-shadow: 0px 1px 10px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.2);
 }
 
 .bootstrap-datetimepicker-widget table td.active.today:before > div {
@@ -26421,6 +26417,10 @@ input.datetimepicker[data-color="yellow"] + .bootstrap-datetimepicker-widget but
     max-width: 340px;
 }
 
+td {
+    vertical-align: middle !important;
+}
+
 .jconfirm .jconfirm-box div.jconfirm-content-pane .jconfirm-content {
     overflow: hidden !important;
 }
@@ -26429,7 +26429,9 @@ input.datetimepicker[data-color="yellow"] + .bootstrap-datetimepicker-widget but
     outline: none!important;
     outline-offset: inherit!important;
 }
-
+.g-sidenav-hidden .sidenav-header .brand-name{
+    display: none;
+}
 a.delete::before {
     font-family: "Font Awesome 5 Free";
     font-weight: 400;

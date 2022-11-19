@@ -26,13 +26,12 @@ class CategoryController extends Controller
 
     public function create()
     {
-        $title = 'Create category';
-        return view('backend.category.create', compact('title'));
+        return view('backend.category.create');
     }
 
     public function store(CategoryRequest $request)
     {
-        $request->merge(['user_id' => Auth::user()->id]);
+        $request->merge(['added_by' => Auth::user()->id]);
         Category::create($request->all());
         flash('Category created successfully!')->success();
         return redirect()->route('category.index');

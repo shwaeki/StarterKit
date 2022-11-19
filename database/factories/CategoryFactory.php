@@ -17,7 +17,7 @@ class CategoryFactory extends Factory
 
             'category_name' => $this->faker->word,
             'status' => 1,
-            'user_id' => User::all()->random()->id,
+            'added_by' => User::all()->random()->id,
         ];
     }
 

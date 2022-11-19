@@ -16,7 +16,6 @@ class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable, HasFactory, HasRoles, LogsActivity, ThrottlesLogins;
 
-    protected static $ignoreChangedAttributes = ['password'];
 
     protected $fillable = [
         'name', 'email', 'password', 'phone_number', 'profile_photo', 'status'];
@@ -25,9 +24,6 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $hidden = [
         'password', 'remember_token',
     ];
-    protected static $logFillable = true;
-    protected static $logName = 'user';
-    protected static $logOnlyDirty = true;
 
     protected $casts = [
         'email_verified_at' => 'datetime',
@@ -65,9 +61,12 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Post::class);
     }
 
-
     public function getActivitylogOptions(): LogOptions
     {
-        return LogOptions::defaults();
+        return LogOptions::defaults()
+            ->useLogName(class_basename($this))
+            ->dontLogIfAttributesChangedOnly(['updated_at', 'password'])
+            ->logFillable()
+            ->logOnlyDirty();
     }
 }

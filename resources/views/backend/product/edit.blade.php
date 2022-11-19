@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
 @push('title')
-    تعديل المنشور
+    تعديل المنتج
 @endpush
 
 @push('pg_btn')
-    <a href="{{route('post.index')}}" class="btn btn-sm btn-neutral">جميع المنشورات</a>
+    <a href="{{route('product.index')}}" class="btn btn-sm btn-neutral">جميع المنتجات</a>
 @endpush
 
 @section('content')
@@ -13,24 +13,56 @@
         <div class="col-md-12">
             <div class="card mb-5">
                 <div class="card-body">
-                    <form action="{{route('post.update', $post)}}" method="POST" enctype="multipart/form-data">
+                    <form action="{{route('product.update', $product)}}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('put')
-                        <h6 class="heading-small text-muted mb-4">معلومات المنشور</h6>
+                        <h6 class="heading-small text-muted mb-4">معلومات المنتج</h6>
                         <div class="pl-lg-4">
                             <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <label for="name" class="form-control-label">عنوان المنتج</label>
+                                        <input type="text" class="form-control" id="name" name="name"
+                                               value="{{old('name', $product->name)}}" required>
+                                    </div>
+                                </div>
+
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label for="post_title" class="form-control-label">عنوان المنشور</label>
-                                        <input type="text" class="form-control" id="post_title" name="post_title"
-                                               value="{{old('post_title', $post->post_title)}}" required>
+                                        <label for="barcode" class="form-control-label">باركود المنتج</label>
+                                        <input type="text" class="form-control" id="barcode" name="barcode"
+                                               value="{{old('barcode', $product->barcode)}}">
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label for="price" class="form-control-label">سعر المنتج</label>
+                                        <input type="number" class="form-control" id="price" name="price"
+                                               value="{{old('price', $product->price)}}" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label for="cost" class="form-control-label">كلفة المنتج</label>
+                                        <input type="number" class="form-control" id="cost" name="cost"
+                                               value="{{old('cost', $product->cost)}}" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label for="quantity" class="form-control-label">الكمية المتوفرة</label>
+                                        <input type="number" class="form-control" id="quantity" name="quantity"
+                                               value="{{old('quantity', $product->quantity)}}" required>
                                     </div>
                                 </div>
 
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         {{ Form::label('category_id', 'التصنيف', ['class' => 'form-control-label']) }}
-                                        {{ Form::select('category_id', $categories, $post->category_id, [ 'class'=> 'selectpicker form-control', 'required'=> 'required', 'placeholder' => 'اختار التصنيف ...']) }}
+                                        {{ Form::select('category_id', $categories, $product->category_id, [ 'class'=> 'selectpicker form-control', 'required'=> 'required', 'placeholder' => 'اختار التصنيف ...']) }}
                                     </div>
                                 </div>
 
@@ -51,13 +83,9 @@
                                 </div>
 
                                 <div class="col-md-2">
-                                    @if ($post->featured_image)
-                                        <a href="{{ asset($post->featured_image) }}" target="_blank">
-                                            <img alt="Image placeholder"
-                                                 class="avatar avatar-xl  rounded-circle"
-                                                 data-toggle="tooltip" data-original-title="{{ $post->name }} Logo"
-                                                 src="{{ asset($post->featured_image) }}">
-                                        </a>
+                                    @if ($product->featured_image)
+                                        <img alt="Image placeholder" style="max-height: 100px"
+                                             src="{{ asset($product->featured_image) }}">
                                     @endif
                                 </div>
 
@@ -65,9 +93,9 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="form-group">
-                                        <label for="summernote" class="form-control-label">محتوى المنشور</label>
-                                        <textarea class="form-control" id="summernote" name="post_body"
-                                                  required>{{old('textarea',$post->post_body)}}</textarea>
+                                        <label for="summernote" class="form-control-label">وصف المنتج</label>
+                                        <textarea class="form-control" id="summernote" name="description"
+                                                  required>{{old('textarea',$product->description)}}</textarea>
                                     </div>
                                 </div>
 
@@ -80,7 +108,7 @@
                                 <div class="col-md-12">
                                     <div class="custom-control custom-checkbox">
                                         <input type="checkbox" name="status" value="1"
-                                               {{ $post->status ? 'checked' : ''}}  class="custom-control-input"
+                                               {{ $product->status ? 'checked' : ''}}  class="custom-control-input"
                                                id="status">
                                         <label for="status" class="custom-control-label">الحالة</label>
                                     </div>

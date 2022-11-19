@@ -19,12 +19,8 @@ class CreatePostsTable extends Migration
             $table->text('post_body');
             $table->string('featured_image');
             $table->boolean('status')->default(0);
-            $table->foreignId('category_id')->nullable()
-                    ->constrained()
-                    ->onDelete('cascade');
-            $table->foreignId('user_id')
-                    ->constrained()
-                    ->onDelete('cascade');
+            $table->foreignId('category_id')->nullable()->constrained()->onDelete('cascade');
+            $table->foreignId('added_by')->references('id')->on('users')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

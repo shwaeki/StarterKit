@@ -43,6 +43,10 @@ class RolePermissionSeeder extends Seeder
             'create-post',
             'update-post',
             'destroy-post',
+            'view-product',
+            'create-product',
+            'update-product',
+            'destroy-product',
         ];
         foreach ($permissions as $permission) {
             Permission::create(['name' => $permission]);

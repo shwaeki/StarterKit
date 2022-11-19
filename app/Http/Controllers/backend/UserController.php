@@ -16,14 +16,14 @@ class UserController extends Controller
     {
 
         $this->middleware('permission:view-user')->except(['profile', 'profileUpdate']);
-        $this->middleware('permission:create-user', ['only' => ['create','store']]);
-        $this->middleware('permission:update-user', ['only' => ['edit','update']]);
+        $this->middleware('permission:create-user', ['only' => ['create', 'store']]);
+        $this->middleware('permission:update-user', ['only' => ['edit', 'update']]);
         $this->middleware('permission:destroy-user', ['only' => ['destroy']]);
     }
 
     public function index(Request $request)
     {
-        $users= User::paginate(setting('record_per_page', 15));
+        $users = User::paginate(setting('record_per_page', 15));
         return view('backend.users.index', compact('users'));
     }
 
@@ -77,7 +77,7 @@ class UserController extends Controller
 
     public function destroy(User $user)
     {
-        if ($user->id == Auth::user()->id || $user->id ==1) {
+        if ($user->id == Auth::user()->id || $user->id == 1) {
             flash('You can not delete logged in user!')->warning();
             return back();
         }
@@ -94,11 +94,13 @@ class UserController extends Controller
 
     public function profileUpdate(UserUpdateRequest $request, User $user)
     {
-        $userData = $request->except('profile_photo');
+        $userData = $request->except(['profile_photo', 'password']);
         if ($request->profile_photo) {
             $userData['profile_photo'] = parse_url($request->profile_photo, PHP_URL_PATH);
         }
-
+        if ($request->password && $request->password !== '') {
+            $userData['password'] = parse_url($request->profile_photo, PHP_URL_PATH);
+        }
         $user->update($userData);
         flash('Profile updated successfully!')->success();
         return redirect()->route('users.index');

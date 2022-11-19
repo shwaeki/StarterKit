@@ -18,11 +18,8 @@ class Post extends Model
         'featured_image',
         'status',
         'category_id',
-        'user_id',
+        'added_by',
     ];
-    protected static $logFillable = true;
-    protected static $logName = 'post';
-    protected static $logOnlyDirty = true;
 
     public function setStatusAttribute($status)
     {
@@ -36,11 +33,15 @@ class Post extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class,'added_by');
     }
 
     public function getActivitylogOptions(): LogOptions
     {
-        return LogOptions::defaults();
+        return LogOptions::defaults()
+            ->useLogName(class_basename($this))
+            ->dontLogIfAttributesChangedOnly(['updated_at'])
+            ->logFillable()
+            ->logOnlyDirty();
     }
 }

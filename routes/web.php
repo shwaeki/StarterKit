@@ -4,6 +4,7 @@ use App\Http\Controllers\backend\CategoryController;
 use App\Http\Controllers\backend\HomeController;
 use App\Http\Controllers\backend\PermissionController;
 use App\Http\Controllers\backend\PostController;
+use App\Http\Controllers\backend\ProductController;
 use App\Http\Controllers\backend\RoleController;
 use App\Http\Controllers\backend\SettingController;
 use App\Http\Controllers\backend\UserController;
@@ -25,7 +26,7 @@ Route::get('/', function () {
     return redirect()->route('home');
 });
 
-Auth::routes(['verify' => true]);
+Auth::routes(['false' => true,'register' => false]);
 
 
 Route::group(['middleware' => ['auth', 'verified']], function () {
@@ -36,9 +37,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 
 
     Route::resource('users', UserController::class);
-
     Route::get('profile/{user}', [UserController::class, 'profile'])->name('profile.edit');
-
     Route::post('profile/{user}', [UserController::class, 'profileUpdate'])->name('profile.update');
 
     Route::resource('roles', RoleController::class)->except('show');
@@ -48,6 +47,8 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::resource('category', CategoryController::class)->except('show');
 
     Route::resource('post', PostController::class);
+
+    Route::resource('product', ProductController::class);
 
     Route::get('/activity-log', [SettingController::class, 'activity'])->name('activity-log.index');
 

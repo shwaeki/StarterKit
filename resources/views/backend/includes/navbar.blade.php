@@ -8,7 +8,7 @@
                          class="navbar-brand-img"
                          src="{{ asset(setting('company_logo')) }}">
                 @else
-                    {{setting('company_name') }}
+                    <span class="brand-name d-block"> {{setting('company_name') }}</span>
                 @endif
             </a>
 
@@ -60,20 +60,48 @@
                             <a class="nav-link {{ (request()->is('post*')) ? 'active' : '' }}" href="#navbar-post"
                                data-toggle="collapse" role="button" aria-expanded="true" aria-controls="navbar-post">
                                 <i class="fas text-primary fa-tasks"></i>
-                                <span class="nav-link-text">ادارة المشاركات</span>
+                                <span class="nav-link-text">ادارة المنشورات</span>
                             </a>
                             <div class="collapse" id="navbar-post">
                                 <ul class="nav nav-sm flex-column">
                                     @can('view-post')
                                         <li class="nav-item">
                                             <a href="{{route('post.index')}}" class="nav-link"><span
-                                                    class="sidenav-mini-icon">D </span><span class="sidenav-normal">جميع المشاركات</span></a>
+                                                    class="sidenav-mini-icon">D </span><span class="sidenav-normal">جميع المنشورات</span></a>
                                         </li>
                                     @endcan
                                     @can( 'create-post')
                                         <li class="nav-item">
                                             <a href="{{route('post.create')}}" class="nav-link"><span
-                                                    class="sidenav-mini-icon">D </span><span class="sidenav-normal">اضافة مشاركة جديدة</span></a>
+                                                    class="sidenav-mini-icon">D </span><span class="sidenav-normal">اضافة منشور جديدة</span></a>
+                                        </li>
+                                    @endcan
+                                </ul>
+                            </div>
+                        </li>
+                    @endcan
+
+
+                    @canany(['view-product', 'create-product'])
+
+                        <li class="nav-item">
+                            <a class="nav-link {{ (request()->is('product*')) ? 'active' : '' }}" href="#navbar-product"
+                               data-toggle="collapse" role="button" aria-expanded="true" aria-controls="navbar-product">
+                                <i class="fas text-primary fa-tags"></i>
+                                <span class="nav-link-text">ادارة المنتجات</span>
+                            </a>
+                            <div class="collapse" id="navbar-product">
+                                <ul class="nav nav-sm flex-column">
+                                    @can('view-product')
+                                        <li class="nav-item">
+                                            <a href="{{route('product.index')}}" class="nav-link"><span
+                                                    class="sidenav-mini-icon">D </span><span class="sidenav-normal">جميع المنتجات</span></a>
+                                        </li>
+                                    @endcan
+                                    @can( 'create-product')
+                                        <li class="nav-item">
+                                            <a href="{{route('product.create')}}" class="nav-link"><span
+                                                    class="sidenav-mini-icon">D </span><span class="sidenav-normal">اضافة منتج جديدة</span></a>
                                         </li>
                                     @endcan
                                 </ul>

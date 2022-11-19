@@ -7,7 +7,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name', 'Laravel') }}</title>
     <!-- Fonts -->
-    
+
     <!-- Icons -->
     <link rel="stylesheet" href="{{asset('assets/vendor/@fortawesome/fontawesome-free/css/all.min.css')}}"
           type="text/css">
@@ -19,7 +19,7 @@
 </head>
 
 <body class="bg-white">
-<div class="main-content">
+<div class="main">
     @yield('content')
 </div>
 

@@ -26,7 +26,7 @@ class PostRequest extends FormRequest
         return [
             'post_title' => 'required',
             'post_body' => 'required',
-            'featured_image' => 'required',
+            'featured_image' => 'nullable',
             'category_id' => 'required',
         ];
     }

@@ -17,49 +17,27 @@ class PermissionController extends Controller
         $this->middleware('permission:destroy-permission', ['only' => ['destroy']]);
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        activity('permission')
-            ->causedBy(Auth::user())
-            ->log('view');
-        $title = 'Manage Permissions';
         $permissions = Permission::paginate(setting('record_per_page', 15));
-        return view('backend.permissions.index', compact('permissions','title'));
+        return view('backend.permissions.index', compact('permissions'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
-        activity('permission')
-            ->causedBy(Auth::user())
-            ->log('create');
-        $title = 'Create Permission';
-        return view('backend.permissions.create', compact('title'));
+        return view('backend.permissions.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
         $request->validate([
             'name' => 'required|unique:permissions|max:255',
         ]);
-        activity('permission')
-        ->causedBy(Auth::user())
-        ->log('created');
+
+        activity('permission')->causedBy(Auth::user())->log('created');
         foreach (explode(',',$request->name) as  $perm) {
             $permission = Permission::create(['name' => $perm]);
             $permission->assignRole('super-admin');

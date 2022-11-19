@@ -19,14 +19,12 @@ class SettingController extends Controller
 
     public function index()
     {
-
         $roles = Role::pluck('name', 'id');
         return view('backend.settings.edit', compact('roles'));
     }
 
     public function update(Request $request)
     {
-
         foreach ($request->all() as $key => $value) {
             if ($key !== "_token") {
                 if ($key === "company_logo") {
@@ -39,13 +37,9 @@ class SettingController extends Controller
             }
         }
         Setting::save();
-        activity('settings')
-            ->causedBy(Auth::user())
-            ->withProperties($request->all())
-            ->log('updated');
+        activity('settings')->causedBy(Auth::user())->withProperties($request->all())->log('updated');
         flash('Settings updated successfully!')->success();
         return back();
-
     }
 
     public function activity(Request $request)

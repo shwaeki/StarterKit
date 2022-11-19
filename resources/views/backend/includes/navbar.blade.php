@@ -1,18 +1,19 @@
 <nav class="sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light bg-white" id="sidenav-main">
     <div class="scrollbar-inner">
         <!-- Brand -->
-        <div class="sidenav-header  d-flex  align-items-center">
-            <a class="navbar-brand text-center" href="{{ route('home') }}">
+        <div class="sidenav-header  d-flex justify-content-center align-items-center">
+            <a class="text-center" href="{{ route('home') }}">
                 @if (setting('company_logo'))
                     <img alt="{{ setting('company_name') }}"
-                         height="45"
                          class="navbar-brand-img"
                          src="{{ asset(setting('company_logo')) }}">
                 @else
                     {{setting('company_name') }}
                 @endif
             </a>
+
         </div>
+        <hr class="my-0">
         <div class="navbar-inner">
             <!-- Collapse -->
             <div class="collapse navbar-collapse" id="sidenav-collapse-main">

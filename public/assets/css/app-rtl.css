@@ -2908,16 +2908,16 @@ fieldset:disabled a.btn {
 }
 
 .btn-light {
-    color: #fff;
-    background-color: #adb5bd;
-    border-color: #adb5bd;
+    color: #212529;
+    background-color: #f8f9fa;
+    border-color: #f8f9fa;
     box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
 }
 
 .btn-light:hover {
-    color: #fff;
-    background-color: #adb5bd;
-    border-color: #adb5bd;
+    color: #212529;
+    background-color: #e2e6ea;
+    border-color: #dae0e5;
 }
 
 .btn-light:focus, .btn-light.focus {
@@ -2932,15 +2932,11 @@ fieldset:disabled a.btn {
 
 .btn-light:not(:disabled):not(.disabled):active, .btn-light:not(:disabled):not(.disabled).active,
 .show > .btn-light.dropdown-toggle {
-    color: #fff;
-    background-color: #919ca6;
-    border-color: #adb5bd;
+    color: #212529;
+    background-color: #dae0e5;
+    border-color: #d3d9df;
 }
 
-.btn-light:not(:disabled):not(.disabled):active:focus, .btn-light:not(:disabled):not(.disabled).active:focus,
-.show > .btn-light.dropdown-toggle:focus {
-    box-shadow: none, 0 0 0 0 rgba(173, 181, 189, 0.5);
-}
 
 .btn-dark {
     color: #fff;
@@ -19108,7 +19104,7 @@ textarea[resize="horizontal"] {
 .navbar-vertical .navbar-brand-img,
 .navbar-vertical .navbar-brand > img {
     max-width: 100%;
-    max-height: 2rem;
+    max-height: 4rem;
 }
 
 @media (min-width: 768px) {
@@ -26427,6 +26423,11 @@ input.datetimepicker[data-color="yellow"] + .bootstrap-datetimepicker-widget but
 
 .jconfirm .jconfirm-box div.jconfirm-content-pane .jconfirm-content {
     overflow: hidden !important;
+}
+
+.bootstrap-select .dropdown-toggle:focus, .bootstrap-select>select.mobile-device:focus+.dropdown-toggle {
+    outline: none!important;
+    outline-offset: inherit!important;
 }
 
 a.delete::before {

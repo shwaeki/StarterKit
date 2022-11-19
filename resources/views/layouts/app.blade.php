@@ -94,7 +94,7 @@
                 }
             });
         })
-        $('input[required]').each(function(){
+        $('input[required],select[required],textarea[required]').each(function(){
             $($(this).parent()).find('label').addClass('required')
         });
     })

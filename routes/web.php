@@ -7,6 +7,7 @@ use App\Http\Controllers\backend\PostController;
 use App\Http\Controllers\backend\ProductController;
 use App\Http\Controllers\backend\RoleController;
 use App\Http\Controllers\backend\SettingController;
+use App\Http\Controllers\backend\SupplierController;
 use App\Http\Controllers\backend\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -49,6 +50,8 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::resource('post', PostController::class);
 
     Route::resource('product', ProductController::class);
+
+    Route::resource('supplier', SupplierController::class);
 
     Route::get('/activity-log', [SettingController::class, 'activity'])->name('activity-log.index');
 

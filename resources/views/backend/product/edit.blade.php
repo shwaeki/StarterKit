@@ -59,12 +59,21 @@
                                     </div>
                                 </div>
 
-                                <div class="col-lg-6">
+                                <div class="col-lg-3">
                                     <div class="form-group">
                                         {{ Form::label('category_id', 'التصنيف', ['class' => 'form-control-label']) }}
                                         {{ Form::select('category_id', $categories, $product->category_id, [ 'class'=> 'selectpicker form-control', 'required'=> 'required', 'placeholder' => 'اختار التصنيف ...']) }}
                                     </div>
                                 </div>
+
+
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label for="category_id" class="form-control-label"> المورد</label>
+                                        {{ Form::select('supplier_id', $suppliers, $product->suppliers_id, [ 'class'=> 'selectpicker form-control', 'required'=> 'required', 'placeholder' => 'اختار المورد ...']) }}
+                                    </div>
+                                </div>
+
 
                                 <div class="col-md-4">
                                     <div class="form-group">
@@ -119,7 +128,6 @@
                             </div>
                         </div>
                     </form>
-                    >
                 </div>
             </div>
         </div>

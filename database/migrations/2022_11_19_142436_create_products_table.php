@@ -23,6 +23,7 @@ class CreateProductsTable extends Migration
             $table->string('barcode')->nullable();
             $table->integer('price');
             $table->integer('cost');
+            $table->foreignId('supplier_id')->constrained()->onDelete('cascade');
             $table->foreignId('category_id')->constrained()->onDelete('cascade');
             $table->foreignId('added_by')->references('id')->on('users')->constrained()->onDelete('cascade');
             $table->timestamps();

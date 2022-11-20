@@ -7,43 +7,28 @@ use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
 
-class Product extends Model
+class Supplier extends Model
 {
     use LogsActivity;
     use HasFactory;
 
     protected $fillable = [
         'name',
-        'description',
-        'featured_image',
-        'status',
-        'barcode',
-        'quantity',
-        'price',
-        'cost',
-        'category_id',
-        'supplier_id',
+        'email',
+        'phone',
+        'address',
         'added_by',
     ];
 
-    public function setStatusAttribute($status)
-    {
-        $this->attributes['status'] = ($status) ? 1 : 0;
-    }
 
-    public function category()
+    public function products()
     {
-        return $this->belongsTo(Category::class);
+        return $this->hasMany(Product::class,'supplier_id');
     }
 
     public function user()
     {
         return $this->belongsTo(User::class,'added_by');
-    }
-
-    public function supplier()
-    {
-        return $this->belongsTo(Supplier::class,'supplier_id');
     }
 
     public function getActivitylogOptions(): LogOptions

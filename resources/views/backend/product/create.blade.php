@@ -59,10 +59,17 @@
                                 </div>
 
 
-                                <div class="col-lg-6">
+                                <div class="col-lg-3">
                                     <div class="form-group">
                                         <label for="category_id" class="form-control-label"> التصنيف</label>
                                         {{ Form::select('category_id', $categories, null, [ 'class'=> 'selectpicker form-control', 'required'=> 'required', 'placeholder' => 'اختار التصنيف ...']) }}
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label for="category_id" class="form-control-label"> المورد</label>
+                                        {{ Form::select('supplier_id', $suppliers, null, [ 'class'=> 'selectpicker form-control', 'required'=> 'required', 'placeholder' => 'اختار المورد ...']) }}
                                     </div>
                                 </div>
 

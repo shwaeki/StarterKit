@@ -7,6 +7,7 @@ use App\Http\Requests\ProductStoreRequest;
 use App\Http\Requests\ProductUpdateRequest;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Supplier;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -29,8 +30,9 @@ class ProductController extends Controller
 
     public function create()
     {
+        $suppliers = Supplier::pluck('name', 'id');
         $categories = Category::pluck('category_name', 'id');
-        return view('backend.product.create', compact('categories'));
+        return view('backend.product.create', compact('suppliers', 'categories'));
     }
 
 
@@ -58,7 +60,8 @@ class ProductController extends Controller
     {
         $product->with(['category', 'user']);
         $categories = Category::pluck('category_name', 'id');
-        return view('backend.product.edit', compact('categories', 'product'));
+        $suppliers = Supplier::pluck('name', 'id');
+        return view('backend.product.edit', compact('categories', 'suppliers', 'product'));
     }
 
 
@@ -77,7 +80,7 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         $product->delete();
-        flash(trans('messages.deleted.updated'))->info();
+        flash(trans('messages.flash.deleted'))->info();
         return redirect()->route('product.index');
     }
 }

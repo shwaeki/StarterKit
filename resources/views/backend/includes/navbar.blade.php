@@ -83,7 +83,6 @@
 
 
                     @canany(['view-product', 'create-product'])
-
                         <li class="nav-item">
                             <a class="nav-link {{ (request()->is('product*')) ? 'active' : '' }}" href="#navbar-product"
                                data-toggle="collapse" role="button" aria-expanded="true" aria-controls="navbar-product">
@@ -102,6 +101,34 @@
                                         <li class="nav-item">
                                             <a href="{{route('product.create')}}" class="nav-link"><span
                                                     class="sidenav-mini-icon">D </span><span class="sidenav-normal">اضافة منتج جديدة</span></a>
+                                        </li>
+                                    @endcan
+                                </ul>
+                            </div>
+                        </li>
+                    @endcan
+
+                    @canany(['view-supplier', 'create-supplier'])
+                        <li class="nav-item">
+                            <a class="nav-link {{ (request()->is('supplier*')) ? 'active' : '' }}"
+                               href="#navbar-supplier"
+                               data-toggle="collapse" role="button" aria-expanded="true"
+                               aria-controls="navbar-supplier">
+                                <i class="fas text-primary fa-tags"></i>
+                                <span class="nav-link-text">ادارة الموردين</span>
+                            </a>
+                            <div class="collapse" id="navbar-supplier">
+                                <ul class="nav nav-sm flex-column">
+                                    @can('view-supplier')
+                                        <li class="nav-item">
+                                            <a href="{{route('supplier.index')}}" class="nav-link"><span
+                                                    class="sidenav-mini-icon">D </span><span class="sidenav-normal">جميع الموردين</span></a>
+                                        </li>
+                                    @endcan
+                                    @can('create-supplier')
+                                        <li class="nav-item">
+                                            <a href="{{route('supplier.create')}}" class="nav-link"><span
+                                                    class="sidenav-mini-icon">D </span><span class="sidenav-normal">اضافة مورد جديدة</span></a>
                                         </li>
                                     @endcan
                                 </ul>
@@ -132,7 +159,6 @@
                                 @endcan
 
                                 @canany(['view-role', 'create-role'])
-
                                     <li class="nav-item">
                                         <a class="nav-link {{ (request()->is('roles*')) ? 'active' : '' }}"
                                            href="{{route('roles.index')}}">

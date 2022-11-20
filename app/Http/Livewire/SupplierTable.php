@@ -2,51 +2,49 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Supplier;
 use Carbon\Carbon;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
-use App\Models\Product;
-use Rappasoft\LaravelLivewireTables\Views\Columns\BooleanColumn;
 use Rappasoft\LaravelLivewireTables\Views\Columns\ButtonGroupColumn;
-use Rappasoft\LaravelLivewireTables\Views\Columns\ImageColumn;
 use Rappasoft\LaravelLivewireTables\Views\Columns\LinkColumn;
-use Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter;
+use Illuminate\Database\Eloquent\Builder;
 
-class ProductTable extends DataTableComponent
+class SupplierTable extends DataTableComponent
 {
-    protected $model = Product::class;
+    protected $model = Supplier::class;
 
     public function configure(): void
     {
 //        $this->setDebugStatus(true);
+
         $this->setPrimaryKey('id');
         $this->setPerPageAccepted([10, 25, 50, 100]);
-        $this->setAdditionalSelects(['products.featured_image', 'products.barcode', 'products.id as id']);
+        $this->setAdditionalSelects(['suppliers.id as id']);
         $this->setColumnSelectStatus(false);
+    }
+
+    public function builder(): Builder
+    {
+        return Supplier::withCount('products');
     }
 
     public function columns(): array
     {
         return [
-            Column::make("اسم المنتج", "name")->sortable(),
-            ImageColumn::make('صورة المنتج')
-                ->location(
-                    fn($row) => asset($row->featured_image)
-                )->attributes(fn($row) => [
-                    'style' => 'height: 50px;',
-                    'class' => 'rounded-full',
-                    'alt' => $row->name . ' Avatar',
-                ]),
-            Column::make("المورد", "supplier.name")->searchable()->sortable(),
-            Column::make("التصنيف", "category.category_name")->searchable()->sortable(),
-            Column::make("الكمية", "quantity")->sortable(),
-            Column::make("السعر", "price")->sortable(),
-            BooleanColumn::make("الحالة", "status")->sortable(),
+            Column::make(" الاسم", "name")->sortable(),
+            Column::make(" رقم الهاتف", "phone")->sortable(),
+            Column::make(" البريد الاكتروني", "email")->sortable(),
+            Column::make(" العنوان", "address")->sortable(),
             Column::make("اضيف بواسطة", "user.name")->sortable(),
             Column::make('تاريخ الانشاء', "created_at")
                 ->sortable()
                 ->format(function ($value) {
                     return Carbon::parse($value)->format('Y-m-d');
+                }),
+            Column::make('عدد المنتجات')
+                ->label(function ($row) {
+                    return $row->products_count;
                 }),
             ButtonGroupColumn::make('خيارات')
                 ->attributes(function ($row) {
@@ -57,7 +55,7 @@ class ProductTable extends DataTableComponent
                 ->buttons([
                     LinkColumn::make('Edit')
                         ->title(fn($row) => '')
-                        ->location(fn($row) => route('product.edit', $row->id))
+                        ->location(fn($row) => route('supplier.edit', $row->id))
                         ->attributes(function ($row) {
                             return [
                                 'class' => 'btn edit btn-primary btn-sm m-1',
@@ -65,15 +63,13 @@ class ProductTable extends DataTableComponent
                         }),
                     LinkColumn::make('Delete')
                         ->title(fn($row) => '')
-                        ->location(fn($row) => route('product.destroy', $row->id))
+                        ->location(fn($row) => route('supplier.destroy', $row->id))
                         ->attributes(function ($row) {
                             return [
                                 'class' => 'btn delete btn-primary btn-sm m-1',
                             ];
                         }),
                 ]),
-
         ];
     }
-
 }
